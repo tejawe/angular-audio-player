@@ -121,6 +121,7 @@ angular.module('audioPlayer', [])
       changeVolume: function (newVolume) {
         if(typeof newVolume === 'number' && newVolume >= 0 || newVolume <= 1){
           this._audioTag.volume = newVolume;
+          this.muted = this._audioTag.muted = false;
         }
       },
       next: function (autoplay) {
