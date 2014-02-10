@@ -1,4 +1,4 @@
-/*! angular-audio-player v0.2.1 | date: 29-01-2014 */
+/*! angular-audio-player v0.2.1 | date: 10-02-2014 */
 /**
  * USEFUL LINKS:
  * Media events on <audio> and <video> tags:
@@ -118,6 +118,12 @@ angular.module('audioPlayer', [])
       },
       toggleMute: function () {
         this.muted = this._audioTag.muted = !this._audioTag.muted;
+      },
+      updateVolume: function (newVolume) {
+        if (typeof newVolume === 'number' && newVolume >= 0 || newVolume <= 1) {
+          this._audioTag.volume = newVolume;
+          this.muted = this._audioTag.muted = false;
+        }
       },
       next: function (autoplay) {
         var self = this;
@@ -323,9 +329,7 @@ angular.module('audioPlayer', [])
       }
     };
   }]
-);
-
-angular.module('audioPlayer')
+)
 .factory('throttle', ['$timeout', function ($timeout) {
   return function (delay, no_trailing, callback, debounce_mode) {
     var timeout_id,
@@ -361,3 +365,4 @@ angular.module('audioPlayer')
     return wrapper;
   };
 }]);
+
