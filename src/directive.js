@@ -118,6 +118,11 @@ angular.module('audioPlayer', [])
       toggleMute: function () {
         this.muted = this._audioTag.muted = !this._audioTag.muted;
       },
+      changeVolume: function (newVolume) {
+        if(typeof newVolume === 'number' && newVolume >= 0 || newVolume <= 1){
+          this._audioTag.volume = newVolume;
+        }
+      },
       next: function (autoplay) {
         var self = this;
         if (self.currentTrack && self.currentTrack < self.tracks) {
