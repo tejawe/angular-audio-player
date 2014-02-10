@@ -261,6 +261,7 @@ angular.module('audioPlayer', [])
         scope.$emit(scope.exposedPlayer.name + ':ready', scope.exposedPlayer);
 
         function watchFn(playlistNew, playlistOld, watchScope) {
+          if(playlistNew == playlistOld) return;
           var player = scope.exposedPlayer,
               currentTrack,
               newTrackNum = null;
